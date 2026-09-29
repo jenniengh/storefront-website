@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Shop | Craft Trails</title><link rel="stylesheet" href="style.css"></head><body><header><div class="header-inner"><a class="logo" href="index.html">Craft Trails</a><nav aria-label="Main navigation"><a href="index.html" >Home</a><a href="shop.html" aria-current="page">Shop</a><a href="product-details.html" >Product Details</a><a href="cart.html" >Shopping Cart</a><a href="checkout.html" >Checkout</a><a href="confirmation.html" >Confirmation</a><a href="contact.html" >Contact Us</a></nav></div></header><main><section><h1>Shop All Products</h1><p>Browse supplies for crocheting, knitting, sewing, painting, sketching, and DIY projects.</p><div id="product-grid" class="grid"></div></section><!-- Replace the <script> block in shop.html with this: -->
+<script src="cart.js"></script>
+<script>
+function renderProducts() {
+  const container = document.getElementById('product-grid');
+  const inventory = getInventory();
+  
+  container.innerHTML = PRODUCTS.map(p => {
+    const stock = inventory[p.id] !== undefined ? inventory[p.id] : p.stock;
+    const isOut = stock <= 0;
+
+    return `
+      <article class="card">
+        <img class="product-image" src="images/${p.image}" alt="${p.name}">
+        <h2>${p.name}</h2>
+        <p>${p.description}</p>
+        <p class="price">$${p.price.toFixed(2)}</p>
+        <p><strong>Category:</strong> ${p.category || ''}</p>
+        <p>Available Stock: <strong>${stock}</strong></p>
+        
+        <button type="button" 
+          class="${isOut ? 'out-of-stock-button' : ''}" 
+          ${isOut ? 'disabled title="Out of Stock"' : ''} 
+          onclick="addToCart('${p.id}')">
+          ${isOut ? 'Out of Stock' : 'Add to Cart'}
+        </button>
+      </article>
+    `;
+  }).join('');
+}
+
+renderProducts();
+</script></main><footer><p>&copy; 2026 Craft Trails. Handmade supplies for creative trails.</p></footer></body></html>

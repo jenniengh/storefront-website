@@ -1,0 +1,14 @@
+Craft Trails Progress Report
+
+Shopping Cart and Inventory Update
+- Added persistent cart storage with localStorage.
+- Added and remove item controls.
+- Added quantity adjustment.
+- Added current item totals and cart total.
+- Added Clear Entire Cart and Proceed to Checkout buttons.
+- Added immediate visual feedback after cart actions.
+- Added inventory counts that decrease when products enter the cart and increase when removed or cleared.
+- Added Out of Stock prevention and tooltip.
+- Checkout now reads the actual cart and completes an order using the cart contents.
+- Confirmation page displays the completed order number, items, quantities, and total.
+- The cart, inventory, checkout, and confirmation pages now form the planned purchasing workflow.
